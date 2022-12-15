@@ -12,3 +12,16 @@ define("PUBLIC_PATH", PROJECT_PATH . '/public');
 echo $_SERVER['SCRIPT_NAME'];
 echo $_SERVER['DOCUMENT_ROOT'];
 echo __FILE__;
+
+
+$root = substr($_SERVER['SCRIPT_NAME'],
+    0,
+    strpos($_SERVER['SCRIPT_NAME'], '/public') + 7);
+define("ROOT_URL", $root);
+
+function url_path($path) {
+    if($path[0] != '/') {
+        $path = "/" . $path;
+    }
+    return ROOT_URL . $path;
+}
